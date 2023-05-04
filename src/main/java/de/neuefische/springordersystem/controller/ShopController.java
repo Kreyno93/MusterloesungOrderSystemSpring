@@ -4,6 +4,7 @@ import de.neuefische.springordersystem.model.Order;
 import de.neuefische.springordersystem.model.Product;
 import de.neuefische.springordersystem.service.ShopService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,13 @@ public class ShopController {
     }
 
     @GetMapping("products/{id}")
-    public Product getProduct(@PathVariable int id) {
-        return shopService.getProduct(id);
+    public ResponseEntity<Product> getProduct(@PathVariable int id) {
+        Product product = shopService.getProduct(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(product);
+        }
     }
 
     @PostMapping("products/add")
@@ -41,8 +47,8 @@ public class ShopController {
     }
 
     @PostMapping("orders/add")
-    public void addOrder(@RequestBody List<Integer> productIds) {
-        shopService.addOrder(productIds);
+    public Order addOrder(@RequestBody List<Integer> productIds) {
+        return shopService.addOrder(productIds);
     }
 
 }
