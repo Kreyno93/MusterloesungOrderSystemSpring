@@ -40,7 +40,7 @@ public class ShopController {
         return shopService.getOrder(id);
     }
 
-    @PostMapping("orders/")
+    @PostMapping("orders/add")
     public void addOrder(@RequestBody List<Integer> productIds) {
         shopService.addOrder(productIds);
     }
