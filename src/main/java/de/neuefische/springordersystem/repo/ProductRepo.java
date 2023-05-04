@@ -3,19 +3,16 @@ package de.neuefische.springordersystem.repo;
 import de.neuefische.springordersystem.model.Product;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Repository
 public class ProductRepo {
 
-    private Map<Integer, Product> products = Map.of(
+    private final Map<Integer, Product> products = new HashMap<>(Map.of(
             1, new Product(1, "Apfel"),
             2, new Product(2, "Banane"),
             3, new Product(3, "Zitrone"),
-            4, new Product(4, "Mandarine")
+            4, new Product(4, "Mandarine"))
     );
 
     public Product getProduct(int id) {
