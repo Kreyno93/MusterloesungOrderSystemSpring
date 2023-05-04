@@ -23,13 +23,8 @@ public class ShopController {
     }
 
     @GetMapping("products/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable int id) {
-        Product product = shopService.getProduct(id);
-        if (product == null) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(product);
-        }
+    public Product getProduct(@PathVariable int id) {
+        return shopService.getProduct(id);
     }
 
     @PostMapping("products/add")

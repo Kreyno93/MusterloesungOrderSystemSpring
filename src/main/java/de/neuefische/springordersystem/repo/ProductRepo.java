@@ -16,7 +16,11 @@ public class ProductRepo {
     );
 
     public Product getProduct(int id) {
-        return products.get(id);
+        Product product = products.get(id);
+        if (product == null) {
+            throw new NoSuchElementException("No product found!");
+        }
+        return product;
     }
 
     public List<Product> listProducts() {
